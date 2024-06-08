@@ -1,5 +1,6 @@
 package com.luismipalos.guideinabyss.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,10 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.luismipalos.guideinabyss.R
 import com.luismipalos.guideinabyss.views.delvers.data.network.dto.DelverDTO
 
 @Composable
@@ -52,12 +55,22 @@ fun DelversSection(
                                 .border(1.dp, Color.Gray)
                                 .clickable { onItemClick(item) }
                         ) {
-                            AsyncImage(
-                                model = item.foto,
-                                contentDescription = item.nombre,
-                                modifier = Modifier.fillMaxSize(),
-                                contentScale = ContentScale.Crop
-                            )
+                            if (item.foto == "") {
+                                Image(
+                                    painter = painterResource(id = R.drawable.unknown),
+                                    contentDescription = "Fauna",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(vertical = 8.dp),
+                                )
+                            } else {
+                                AsyncImage(
+                                    model = item.foto,
+                                    contentDescription = item.nombre,
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Crop
+                                )
+                            }
                         }
                     }
                 }
@@ -79,12 +92,22 @@ fun DelversSection(
                                 .border(1.dp, Color.Gray)
                                 .clickable { onItemClick(item) }
                         ) {
-                            AsyncImage(
-                                model = item.foto,
-                                contentDescription = item.nombre,
-                                modifier = Modifier.fillMaxSize(),
-                                contentScale = ContentScale.Crop
-                            )
+                            if (item.foto == "") {
+                                Image(
+                                    painter = painterResource(id = R.drawable.unknown),
+                                    contentDescription = "Fauna",
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(vertical = 8.dp),
+                                )
+                            } else {
+                                AsyncImage(
+                                    model = item.foto,
+                                    contentDescription = item.nombre,
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Crop
+                                )
+                            }
                         }
                     }
                 }

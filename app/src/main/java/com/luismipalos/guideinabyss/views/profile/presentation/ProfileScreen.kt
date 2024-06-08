@@ -5,11 +5,13 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -243,39 +245,45 @@ fun ProfileScreen(viewModel: ProfileViewModel, navController: NavController) {
                                 notificaciones)
                         }
                     Spacer(modifier = Modifier.height(5.dp))
-                    Box(
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .border(
-                                width = 2.dp,
-                                color = GiAPrimary,
-                            )
-                            .background(Color.White)
-                            .padding(5.dp)
+                    Row (
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "Notificaciones",
-                            fontSize = 14.sp,
+                        Box(
                             modifier = Modifier
                                 .padding(8.dp)
+                                .border(
+                                    width = 2.dp,
+                                    color = GiAPrimary,
+                                )
+                                .background(Color.White)
+                                .padding(5.dp)
+                        ) {
+                            Text(
+                                text = "Notificaciones",
+                                fontSize = 14.sp,
+                                modifier = Modifier
+                                    .padding(8.dp)
+                            )
+                        }
+                        Switch(
+                            colors = SwitchDefaults.colors(
+                                checkedTrackColor = Color(GiAPrimary.value),
+                                uncheckedTrackColor = Color(GiASecondary.value)
+                            ),
+                            checked = notificaciones,
+                            onCheckedChange = {
+                                viewModel.onNotificationsChanged(it)
+                                viewModel.onUpdateChanged(
+                                    nombreUsuario,
+                                    fotoPerfil ?: "",
+                                    contrasenya,
+                                    descripcion ?: "",
+                                    it)
+                            }
                         )
                     }
-                    Switch(
-                        colors = SwitchDefaults.colors(
-                            checkedTrackColor = Color(GiAPrimary.value),
-                            uncheckedTrackColor = Color(GiASecondary.value)
-                        ),
-                        checked = notificaciones,
-                        onCheckedChange = {
-                            viewModel.onNotificationsChanged(it)
-                            viewModel.onUpdateChanged(
-                                nombreUsuario,
-                                fotoPerfil ?: "",
-                                contrasenya,
-                                descripcion ?: "",
-                                it)
-                        }
-                    )
                     Spacer(modifier = Modifier.height(5.dp))
                     OutlinedButton(
                         enabled = enabledUpdate,
@@ -290,9 +298,29 @@ fun ProfileScreen(viewModel: ProfileViewModel, navController: NavController) {
                         Text(text = "Guardar")
                     }
                     Spacer(modifier = Modifier.height(5.dp))
-                    if (rol == "Estándar") {
+                    Row (
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        if (rol == "Estándar") {
+                            OutlinedButton(
+                                onClick = { showRoleFormulary = true },
+                                border = BorderStroke(1.dp, GiAPrimary),
+                                shape = RoundedCornerShape(50),
+                                colors = ButtonDefaults.outlinedButtonColors(
+                                    contentColor = GiAPrimary,
+                                    containerColor = Color.Black
+                                )
+                            ) {
+                                Text(text = "Solicitar rol científico")
+                            }
+
+                            Spacer(modifier = Modifier.width(10.dp))
+                        }
+
+
                         OutlinedButton(
-                            onClick = { showRoleFormulary = true },
+                            onClick = { showEntryHistory = true },
                             border = BorderStroke(1.dp, GiAPrimary),
                             shape = RoundedCornerShape(50),
                             colors = ButtonDefaults.outlinedButtonColors(
@@ -300,20 +328,8 @@ fun ProfileScreen(viewModel: ProfileViewModel, navController: NavController) {
                                 containerColor = Color.Black
                             )
                         ) {
-                            Text(text = "Solicitar rol científico")
+                            Text(text = "Historial de entradas")
                         }
-                    }
-
-                    OutlinedButton(
-                        onClick = { showEntryHistory = true },
-                        border = BorderStroke(1.dp, GiAPrimary),
-                        shape = RoundedCornerShape(50),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = GiAPrimary,
-                            containerColor = Color.Black
-                        )
-                    ) {
-                        Text(text = "Historial de entradas")
                     }
 
                     Spacer(modifier = Modifier.height(5.dp))

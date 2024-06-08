@@ -2,7 +2,6 @@ package com.luismipalos.guideinabyss.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -31,9 +30,9 @@ fun ArtifactDetailPopUp(artifact: ArtifactDTO, onDismiss: () -> Unit) {
                 if (artifact.foto == "") {
                     Image(
                         painter = painterResource(id = R.drawable.unknown),
-                        contentDescription = "Fauna",
+                        contentDescription = "Artifact",
                         modifier = Modifier
-                            .fillMaxSize()
+                            .fillMaxWidth().height(200.dp)
                             .padding(vertical = 8.dp),
                     )
                 } else {
