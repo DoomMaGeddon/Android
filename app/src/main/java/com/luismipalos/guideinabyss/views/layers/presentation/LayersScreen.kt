@@ -157,7 +157,7 @@ fun LayersScreen(viewModel: LayersViewModel, navController: NavController) {
                             LayerButtons("Flora") { showFlora = true }
                         }
 
-                        if (userRole !== "Estándar" && (userRank ?: 1) >= selectedLayer) {
+                        if (userRole == "Científico" && (userRank ?: 1) >= selectedLayer) {
                             Row (
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.Center
