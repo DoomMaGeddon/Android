@@ -40,7 +40,7 @@ class SignUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     }
 
     private fun isValidUsername(name: String): Boolean =
-        "^[A-Z][a-zA-Z]+(?: [A-Z][a-zA-Z]*){0,2}\$".toRegex().containsMatchIn(name)
+        name.isNotEmpty()
 
     private fun isValidEmail(email: String): Boolean =
         Patterns.EMAIL_ADDRESS.matcher(email).matches()
