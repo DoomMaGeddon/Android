@@ -231,7 +231,11 @@ fun LayersScreen(viewModel: LayersViewModel, navController: NavController) {
                                     Spacer(modifier = Modifier.height(5.dp))
 
                                     Row {
-                                        CloseButton { viewModel.dismissDialog() }
+                                        CloseButton {
+                                            viewModel.dismissDialog()
+                                            showFloraFormulary = false
+                                            showFaunaFormulary = false
+                                        }
                                         Spacer(modifier = Modifier.width(10.dp))
                                         SubmitButton ({ viewModel.onFaunaFormularySubmit(selectedLayer) }, enabledSubmit)
                                     }
